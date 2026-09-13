@@ -1,0 +1,567 @@
+body {
+    height: 100dvh;
+    overflow: hidden;
+
+    background-color: #e38349;
+     font-family: "Zen Maru Gothic", sans-serif;
+     font-weight: 500;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* ← これが超重要 */
+}
+
+/* ルール */
+
+.size20 {font-size: 20px;}
+
+.bold {font-weight: bold;}
+
+.color_ff{color: #ffffff;}
+.color1 {color: #502a06;}
+.color2 {color: #e38349;}
+
+/* backcolor */
+.back_colorff {background-color: #ffffff;}
+.back_color1 {background-color: #502a06;}
+.back_color2 {background-color: #e38349;}
+
+.huchi {
+  filter:
+    drop-shadow(4px 0 0 white)
+    drop-shadow(-4px 0 0 white)
+    drop-shadow(0 4px 0 white)
+    drop-shadow(0 -4px 0 white)
+    drop-shadow(0px 5px 0px rgba(198, 151, 106, 1));
+
+}
+
+.tya_drop {
+     filter: drop-shadow(0px 10px 0px rgba(198, 151, 106, 1));
+}
+
+/* ヘッダー */
+header {
+    padding-top: env(safe-area-inset-top);
+    position: relative;
+    z-index: 2;
+}
+
+.header_con {
+/* position: relative; */
+}
+
+.header_logo {
+    display: block;
+    height: 20px;
+    width: auto;
+    margin: 0 auto;
+}
+
+/* サイト内 */
+.site {
+    background-image: url(../images/body_base_01_b.png);
+    background-size: 40px;
+
+    height: 100dvh;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* プロフィール */
+.kanban {
+    width: 20%;
+    position: absolute;
+    right: 25px;
+    transform: translateY(-12%);
+    top: env(safe-area-inset-top)px;
+    z-index: 1;
+    display: block;
+    margin: 0 auto;
+    transition: all .2s ease ;
+}
+.kanban:hover {
+    transform: translateY(-5%);
+}
+
+/* プロフィールポップアップ */
+
+    .popup-background{
+        /*position size*/
+        position: fixed;
+        z-index : 100;
+        top : 0;
+        left : 0;
+        height : 100vh;
+        width : 100vw;
+
+        /*design*/
+        background-color: rgb(0, 0, 0);
+        opacity : 0.5
+    }
+    .popup{
+        /*position size*/
+        --height : 300px;
+        --width : 300px;
+        z-index : 101;
+        position: fixed;
+        top : calc(50vh - calc(var(--height) / 2));
+        left : calc(50vw - calc(var(--width) / 2));
+        height : var(--height);
+        width : var(--width);
+
+        /*design*/
+        overflow: hidden;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 3px 1px gray;
+    }
+    .popup > .close-button{
+        /*position size*/
+        --size : 20px;
+        position:absolute;
+        top : calc(var(--size)/4);
+        left : calc(var(--width) - var(--size) * 5/4);/*css variables are available in children*/
+        height : var(--size);
+        width : var(--size);
+
+        /*design*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        font-size: var(--size);
+        border-radius: calc(var(--size)/5);
+    }
+    .popup > .close-button:hover{
+        /*design*/
+        background-color: red;
+        color : white;
+    }
+    .popup > .content{
+        padding: 10px;
+        text-align: center;
+    }
+    
+
+    /*hide popup*/
+    .popup-flag{
+        display:none;
+    }
+    .popup-flag:not(:checked) + .popup-background{
+        display:none;
+    }
+    .popup-flag:not(:checked) + * + .popup{
+        display:none;
+    }
+    
+/* スライド */
+.chara_gage_position {
+    position: relative;
+}
+
+/* ===== ゲージ全体 ===== */
+.gaugeArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  bottom: 5%;
+  z-index: 20;
+}
+
+.gage_con {
+  position: relative;
+}
+
+.gage_bg {
+  position: absolute;
+  top: 0;
+  display: block;
+  z-index: 1;
+}
+
+.gage_bg img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ===== ゲージ ===== */
+#gaugeContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 15px;
+  z-index: 2;
+
+  width: 75%;
+  margin: 2.7% 0 0 0;
+  left: 21%;
+}
+
+/* ===== ゲージ1個 ===== */
+.gaugeBox {
+  width: 40px;
+  height: 10px;
+  margin: 0;
+  background-color: #837161;
+
+  /* ゲージ同士の茶色い区切り線 */
+  border-right: 3px solid #502A06;
+  box-sizing: border-box;
+}
+
+/* 一番右のゲージだけ線を消す */
+.gaugeBox:last-child {
+  border-right: none;
+}
+
+
+/* ========================================
+   ゲージの色
+   箱ごとに色を変える
+======================================== */
+
+/* ===== 1～3個 ===== */
+.gaugeBox.filled.level3 {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 145, 234, 0),
+      rgba(0, 145, 234, 0) 4px,
+      rgba(255, 255, 255, 0.2) 0,
+      rgba(255, 255, 255, 0.2) 8px
+    );
+  background-color: #FFA7AC;
+}
+
+
+/* ===== 4～6個 ===== */
+.gaugeBox.filled.level6 {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 145, 234, 0),
+      rgba(0, 145, 234, 0) 4px,
+      rgba(255, 255, 255, 0.2) 0,
+      rgba(255, 255, 255, 0.2) 8px
+    );
+  background-color: #FF848B;
+}
+
+
+/* ===== 7～9個 ===== */
+.gaugeBox.filled.level9 {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 145, 234, 0),
+      rgba(0, 145, 234, 0) 4px,
+      rgba(255, 255, 255, 0.2) 0,
+      rgba(255, 255, 255, 0.2) 8px
+    );
+  background-color: #EE5F67;
+}
+
+
+/* ===== 10個 ===== */
+.gaugeBox.filled.level10 {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(0, 145, 234, 0),
+      rgba(0, 145, 234, 0) 4px,
+      rgba(255, 255, 255, 0.2) 0,
+      rgba(255, 255, 255, 0.2) 8px
+    );
+  background-color: #F43B46;
+}
+
+
+/* ===== キャラ画像 ===== */
+.gaugeImage {
+  width: 20%;
+  height: auto;
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+  left: 7%;
+  margin: auto 0;
+}
+
+/* 皿 */
+#plate {
+  margin: 50px auto;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #333;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#plate img {
+  width: 100px;
+}
+
+/* 動画 */
+iframe {
+  margin-top: 20px;
+
+}
+
+/* style.css に追加 */
+
+/* 動画サムネ */
+.videoThumb {
+  width: 200px;
+  margin: 20px auto;
+  cursor: pointer;
+  border-radius: 12px;
+  display: block;
+}
+/* モーダル全体 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* 中央配置 */
+.modalContent {
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* 閉じるボタン */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 32px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Short動画用 iframe */
+.shortVideo {
+  height: 100dvh;
+  width: calc(100dvh * 9 / 16);
+  max-width: 100vw;
+  border: none;
+  border-radius: 16px;
+  background: #000;
+}
+
+.soundGuide {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  background: rgba(255,255,255,0.95);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: bold;
+  border: none;
+  pointer-events: none;
+}
+
+/* スライド関係 */
+
+.slide_con {
+  position: relative;
+  display: block;
+  width: 100%;
+  background-color: #000;
+}
+
+
+/* 背景 */
+.menu_bg {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+
+  background-image: url("../images/menu_bg.jpg");
+  background-repeat: repeat-y;
+  background-position: center bottom;
+  background-size: 100% auto;
+}
+
+
+/* スライド全体 */
+#foodSplide {
+  position: absolute;
+  top: 0%;
+  right: 0;
+  left: 0;
+}
+
+
+/* 中身 */
+.foodSlide {
+  box-shadow: 0px 10px 9px -2px rgba(98, 56, 0, 0.7);
+  background: #fff6e5;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.slide_gr {
+  display: flex;
+}
+
+.slide_ana {
+  padding: 5px 0 0 0;
+}
+
+.slide_ana img {
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+/* slide 左 */
+.slide_left {
+  position: relative;
+  width: 50%;
+}
+
+.foodImg {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 5;
+}
+
+.food_bg {
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  opacity: .5;
+  z-index: 2;
+}
+
+
+/* slide 右 */
+.slide_right {
+  width: 45%;
+  position: relative;
+}
+
+.menu_midashi {
+  padding: 10px 0;
+}
+
+.menu_midashi img {
+  width: 100%;
+  height: auto;
+}
+
+.slide_right_bottom {
+  text-align: center;
+  width: 100%;
+}
+
+.slide_setumei {
+  margin: 0 auto;
+  font-size: clamp(7px, 2.5vw, 13px);
+  text-align: left;
+  line-height: 1.6em;
+  display: inline-block;
+
+  text-decoration: underline 1px #E1C7A8;
+  text-underline-offset: 4px;
+}
+
+
+/* ボタン */
+.foodSlide .foodbtn {
+  color: #fff;
+  font-size: 13px;
+  border-radius: 100px;
+  width: 85%;
+  position: absolute;
+
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+
+  bottom: 20%;
+  height: 45px;
+
+  font-weight: bold;
+  border: 4px solid #cfaa5c;
+  transition: 0.3s;
+
+  box-shadow: 0px 5px 0px -2px rgba(116, 60, 0, 1);
+  background-color: #bc0000;
+}
+
+.foodSlide .foodbtn:hover {
+  box-shadow: 0 0 #fff6e5;
+  transform: translateY(1px);
+  background-color: #f1a222;
+}
+
+/* Splide */
+.splide__slide {
+  width: 100% !important;
+  padding: 10px 0;
+}
+
+/* 基本 */
+.foodSlide {
+  transform-origin: top center;
+}
+
+/* 常に左に傾く */
+.tilt .foodSlide {
+  transform: rotate(2deg);
+}
+
+/* 余韻（左固定） */
+@keyframes settle {
+  0% {
+    transform: rotate(2deg);
+  }
+  60% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.settle .foodSlide {
+  animation: settle 0.4s ease;
+}

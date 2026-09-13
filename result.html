@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ご飯あげサイト　シノ</title>
+
+    <!-- リセットcss -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
+     <link rel="stylesheet" href="css/style.css">
+
+     <!-- googleフォント -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
+
+    </head>
+<body>
+
+<section class="site">
+
+  <div class="header_con">
+    <header class="back_color1">
+      <img class="header_logo" src="./images/ze_logo01.png" width="100%">
+    </header>
+  </div>
+
+  <main>
+<h1>お皿をタップ！</h1>
+
+<div id="plate" onclick="feedCharacter()">
+  <img id="foodImage">
+</div>
+
+<div id="result"></div>
+<div id="video"></div>
+
+<button onclick="goBack()">戻る</button>
+
+<!-- モーダル -->
+<div id="videoModal" class="modal">
+  <div class="modalContent">
+    <span class="close" onclick="closeModal()">×</span>
+    <div id="modalVideo"></div>
+  </div>
+</div>
+
+  </main>
+
+  <footer></footer>
+
+</section>
+</body>
+
+<script src="script.js"></script>
+
+</html>

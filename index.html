@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ご飯あげサイト　シノ</title>
+
+    <!-- リセットcss -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@3.0.2/destyle.css">
+     <link rel="stylesheet" href="./css/reset.css">
+     <link rel="stylesheet" href="./css/style.css">
+     <link rel="stylesheet" href="./css/chara.css">
+     <link rel="stylesheet" href="./css/animation.css">
+
+     <!-- googleフォント -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap" rel="stylesheet">
+
+    <!-- splide -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    </head>
+<body>
+
+<section class="site">
+
+
+<div class="header_con">
+
+    <header class="back_color1 ">
+    <img class="header_logo" src="./images/ze_logo01.png" width="100%">
+</header>
+
+        <label class="kanban" for="profile">
+            <img src="./images/profile_btn.png" width="100%" >
+        </label>
+
+ <!--プロフィール画面-->
+    <input type="checkbox" class="popup-flag" id="profile">
+    <label class="popup-background" for="profile"></label>
+    <div class="popup">
+        <label class="close-button" for="profile">×</label>
+        <div class="content">
+            <h3>Popup 1</h3>
+        </div>
+    </div> 
+
+
+
+    <!-- キャラ部分 -->
+
+    
+<div class="balloon" id="balloon">
+    <p id="balloonText" class="balloon-text">
+        タップしてね！</p>
+</div>
+
+
+<section class="chara_gage_position">
+
+<div class="gaugeArea">
+  <img id="gaugeImage" class="gaugeImage" src="./images/gage_chara/gage_chara_00.png" alt="">
+    <div class="gage_con">
+      <div id="gaugeContainer"></div>
+        <div class="gage_bg"><img src="./images/gage_img.png" width="100%"></div>
+    </div>
+</div>
+
+<div id="completeButton" style="display:none;">
+      <a href="complete.html">🎉 完了ページへ</a>
+    </div>
+
+
+<div class="chara_gr">
+
+  <div class="chara_bg">
+<img  src="./images/chara_bg_02.jpg" width="100%">
+  </div>
+
+<div class="chara_con huchi">
+<div class="character is-chara_01 " id="character">
+
+  <!-- ================= -->
+  <!-- 01 -->
+  <!-- ================= -->
+
+  <img src="./images/character/shino_body_01.png" class="part chara_01 body " alt="">
+  <img src="./images/character/shino_face_01.png" class="part chara_01 face " alt="">
+  <img src="./images/character/shino_arm_r_01.png" class="part chara_01 arm_r" alt="">
+  <img src="./images/character/shino_arm_l_01.png" class="part chara_01 arm_l" alt="">
+  <img src="./images/character/shino_tail.png" class="part chara_01 tail " alt="">
+
+
+  <!-- ================= -->
+  <!-- 02 -->
+  <!-- ================= -->
+
+  <img src="./images/character/shino_body_01.png" class="part chara_02 body" alt="">
+  <img src="./images/character/shino_face_02.png" class="part chara_02 face" alt="">
+  <img src="./images/character/shino_arm_r_02.png" class="part chara_02 arm_r" alt="">
+  <img src="./images/character/shino_arm_l_02.png" class="part chara_02 arm_l" alt="">
+  <img src="./images/character/shino_tail.png" class="part chara_02 tail" alt="">
+
+
+  <!-- ================= -->
+  <!-- 03 -->
+  <!-- ================= -->
+
+  <img src="./images/character/shino_body_01.png" class="part chara_03 body" alt="">
+  <img src="./images/character/shino_face_03.png" class="part chara_03 face" alt="">
+  <img src="./images/character/shino_arm_r_03.png" class="part chara_03 arm_r" alt="">
+  <img src="./images/character/shino_arm_l_03.png" class="part chara_03 arm_l" alt="">
+  <img src="./images/character/shino_tail.png" class="part chara_03 tail" alt="">
+
+  <!-- ================= -->
+  <!-- 04 -->
+  <!-- ================= -->
+
+  <img src="./images/character/shino_body_01.png" class="part chara_04 body" alt="">
+  <img src="./images/character/shino_face_04.png" class="part chara_04 face" alt="">
+  <img src="./images/character/shino_arm_r_04.png" class="part chara_04 arm_r arm_r_04" alt="">
+  <img src="./images/character/shino_arm_l_04.png" class="part chara_04 arm_l arm_l_04" alt="">
+  <img src="./images/character/shino_tail.png" class="part chara_04 tail" alt="">
+
+  <!-- ================= -->
+  <!-- 05 -->
+  <!-- ================= -->
+
+  <img src="./images/character/shino_body_01.png" class="part chara_05 body" alt="">
+  <img src="./images/character/shino_face_05.png" class="part chara_05 face" alt="">
+  <img src="./images/character/shino_arm_r_05.png" class="part chara_05 arm_r" alt="">
+  <img src="./images/character/shino_arm_l_05.png" class="part chara_05 arm_l" alt="">
+  <img src="./images/character/shino_tail.png" class="part chara_05 tail" alt="">
+
+  <!-- ================= -->
+  <!-- 06 -->
+  <!-- ================= -->
+
+  <img src="./images/character/shino_body_01.png" class="part chara_06 body" alt="">
+  <img src="./images/character/shino_face_06.png" class="part chara_06 face" alt="">
+  <img src="./images/character/shino_arm_r_06.png" class="part chara_06 arm_r" alt="">
+  <img src="./images/character/shino_arm_l_06.png" class="part chara_06 arm_l" alt="">
+  <img src="./images/character/shino_tail.png" class="part chara_06 tail" alt="">  
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+    
+
+
+
+<!-- セリフ管理（非表示） -->
+<div class="talk-list">
+
+  <div class="talk-data" data-emotion="chara_01">
+    やっほー！<br>アイテム屋のシノだよ！
+  </div>
+
+  <div class="talk-data" data-emotion="chara_02">
+    カプセルトイ好きなの！<br>へへっ！興味ある？
+  </div>
+
+  <div class="talk-data" data-emotion="chara_03">
+   わわっ！<br>びっくりしたー！
+  </div>
+
+  <div class="talk-data" data-emotion="chara_04">
+   ご飯くれたら...<br>商品値引きするよ！
+  </div>
+
+  <div class="talk-data" data-emotion="chara_05">
+   おなかすいたーー！！
+  </div>
+
+  <div class="talk-data" data-emotion="chara_06">
+   ぼろぼろになるから<br>尻尾に触らないで！
+  </div>  
+</div>
+
+<!-- slide -->
+
+<div class="slide_con">
+
+<div class="menu_bg"><img src="./images/menu_bg.jpg" width="100%"></div>
+
+<div class="splide " id="foodSplide">
+  <div class="splide__track">
+    <ul class="splide__list">
+
+      <!-- スライド1 -->
+      <li class="splide__slide">
+        <div class="foodSlide">
+          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
+          
+      <div class="slide_gr">
+            <div class="slide_left">
+            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+            <img src="./images/food/food_01.png" class="foodImg" width="100%">
+          </div>
+          
+         <div class="slide_right">
+            <div class="menu_midashi"><img src="./images/food/food_name_01.png" width="100%"></div>
+          
+            <div class="slide_right_bottom">
+            <p class="slide_setumei">
+            ふわふわ卵に包まれたオムライス<br>
+            ケチャップでお絵かき楽しい～！<br>
+            穴があいてるのはご愛嬌！<br>
+            </p>
+          <button class="foodbtn" onclick="selectFood(this)"
+            data-type="favorite"
+            data-video="hh7c--KrXH8">
+            これをあげる！
+          </button>
+           </div>
+          
+         </div>
+      </div>
+          
+          
+        </div>
+      </li>
+    
+      <!-- スライド2 -->
+      <li class="splide__slide">
+        <div class="foodSlide">
+          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
+          
+      <div class="slide_gr">
+            <div class="slide_left">
+            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+            <img src="./images/food/food_02.png" class="foodImg" width="100%">
+          </div>
+          
+         <div class="slide_right">
+            <div class="menu_midashi"><img src="./images/food/food_name_02.png" width="100%"></div>
+          
+            <div class="slide_right_bottom">
+            <p class="slide_setumei">
+            とろけるおいしさのネギトロ<br>
+            醬油とワサビで食べると最高！<br>
+            あ、醬油がこぼれちゃった...<br>
+            </p>
+          <button class="foodbtn" onclick="selectFood(this)"
+            data-type="like"
+            data-video="hh7c--KrXH8">
+            これをあげる！
+          </button>
+           </div>
+          
+         </div>
+      </div>
+          
+        </div>
+      </li>
+
+      <!-- スライド3 -->
+      <li class="splide__slide">
+        <div class="foodSlide">
+          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
+          
+      <div class="slide_gr">
+            <div class="slide_left">
+            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+            <img src="./images/food/food_03.png" class="foodImg" width="100%">
+          </div>
+          
+         <div class="slide_right">
+            <div class="menu_midashi"><img src="./images/food/food_name_03.png" width="100%"></div>
+          
+            <div class="slide_right_bottom">
+            <p class="slide_setumei">
+            いい感じに盛り付けたトマト<br>
+            みずみずしくてジューシー！<br>
+            トマト100%の料理！...料理？<br>
+            </p>
+          <button class="foodbtn" onclick="selectFood(this)"
+            data-type="normal"
+            data-video="hh7c--KrXH8">
+            これをあげる！
+          </button>
+           </div>
+          
+         </div>
+      </div>
+          
+        </div>
+      </li>
+
+      <!-- スライド4 -->
+      <li class="splide__slide">
+        <div class="foodSlide">
+          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
+          
+      <div class="slide_gr">
+            <div class="slide_left">
+            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+            <img src="./images/food/food_04.png" class="foodImg" width="100%">
+          </div>
+          
+         <div class="slide_right">
+            <div class="menu_midashi"><img src="./images/food/food_name_04.png" width="100%"></div>
+          
+            <div class="slide_right_bottom">
+            <p class="slide_setumei">
+            ベーコンたっぷりカルボナーラ<br>
+            チーズと濃いめの味が幸せ！<br>
+            カロリー過多で卵黄も幸せ！<br>
+            </p>
+          <button class="foodbtn" onclick="selectFood(this)"
+            data-type="dislike"
+            data-video="hh7c--KrXH8">
+            これをあげる！
+          </button>
+           </div>
+          
+         </div>
+      </div>
+          
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</div>
+<!-- slide終わり -->
+
+    
+<main>
+
+</main>
+
+<footer>
+
+</footer>
+
+
+</section>
+
+</body>
+
+<script src="./js/chara_script.js"></script>
+<script src="./js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+</html>
