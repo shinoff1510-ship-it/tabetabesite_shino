@@ -1,0 +1,259 @@
+/* 吹き出し本体 */
+.balloon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  background-image: linear-gradient(0deg, rgba(255, 231, 206, 1), rgba(255, 246, 229, 1));
+  border: 6px solid #e38349;
+  border-radius: 20px;
+  filter:drop-shadow(0px 6px 0px #A84917);
+  padding: 15px;
+
+  width: 260px;       /* 固定幅 */
+  height: 80px;      /* 固定高さ */
+  z-index: 3;
+  left: 50px;
+  bottom: -50px;
+
+  box-sizing: border-box;
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+   bottom: 0;
+  left: 25%;
+  border-width: 20px 0 0 20px;
+  border-style: solid;
+  border-color: #e38349 transparent transparent;
+  translate: -50% 100%;
+}
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  border-width: 10.3px 0 0 10.3px;
+  border-style: solid;
+  border-color: #feebc0 transparent transparent;
+  translate: calc(-50% + 0.8px) 100%;
+
+}
+/* ===================== */
+/* テキスト */
+/* ===================== */
+
+/* テキスト */
+.balloon-text {
+  margin: 0;
+  line-height: 1.3;
+  text-align: center;
+  color: #502a06;
+
+  width: 100%;
+  white-space: normal;   /* 改行許可 */
+  word-break: break-word;
+  font-family: "M PLUS 1p", sans-serif;
+}
+
+/* セリフ管理用は非表示 */
+.talk-list {
+  display: none;
+}
+
+/*
+アニメ時だけ
+タイピング用設定を付ける
+*/
+.balloon-text.show {
+  overflow: hidden;
+  /* white-space: nowrap; */
+  width: 100%;
+
+  animation:
+    fadeUp 0.45s ease,
+    typing 1s steps(20, end);
+}
+
+/*
+文字表示
+
+1. 下からふわっと
+2. タイピング風
+*/
+.balloon-text.show {
+  overflow: hidden;
+  /* white-space: nowrap; */
+
+  animation:
+    fadeUp 0.45s ease,
+    typing 0.5s steps(20, end);
+}
+
+
+/* キャラクター全体 */
+.character {
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 90%;
+  max-width: 300px;
+  aspect-ratio: 6 / 7;
+}
+
+
+/* パーツ共通 */
+.part {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: none;
+}
+
+.body {
+  top: 60%;
+  width: 45%;
+
+  left: 0; right: 0;
+  margin: 0 auto;
+  
+  z-index: 4;
+}
+
+.face {
+  top:0;
+  width: 100%;
+  
+  left: 0; right: 0;
+  margin: 0 auto;
+
+  z-index: 5;
+}
+
+.arm_r {
+    top: 55%;
+    width: 40%;
+
+    left: 50%;
+    
+    z-index: 3;
+    transform-origin: 100% 0%;
+}
+
+.arm_l {
+    top: 55%;
+    width: 40%;
+
+    left: 10%;
+    
+    z-index: 3;
+    transform-origin: 0% 0%;
+
+}
+
+.tail {
+    top: 11%;
+    width: 70%;
+
+    left: 45%;
+    animation: tail_anima 1.5s ease-in-out infinite;
+    transform-origin: 50% 100%;
+}
+
+/* 差分調整 */
+
+.arm_r_04,
+.arm_l_04 {
+  z-index: 5 ;
+  top: 57%; 
+}
+
+/* 初期表示 */
+.character.is-chara_01 .chara_01 {
+  display: block;
+}
+
+.character.is-chara_02 .chara_02 {
+  display: block;
+}
+
+.character.is-chara_03 .chara_03 {
+  display: block;
+}
+
+.character.is-chara_04 .chara_04 {
+  display: block;
+}
+
+.character.is-chara_05 .chara_05 {
+  display: block;
+}
+
+.character.is-chara_06 .chara_06 {
+  display: block;
+}
+
+/* 右腕（arm_01 を使う状態） */
+.character.is-chara_01 .arm_r,
+.character.is-chara_03 .arm_r,
+.character.is-chara_05 .arm_r {
+  animation: armRightSwing 1.5s ease-in-out infinite;
+  transform-origin: top center;
+   will-change: transform;
+}
+
+.character.is-chara_03 .arm_r {
+    top: 58%;
+    left: 48%;
+}
+
+.character.is-chara_03 .arm_l {
+    top: 58%;
+    left: 12%;
+}
+
+/* 左腕（arm_01 を使う状態） */
+.character.is-chara_01 .arm_l,
+.character.is-chara_03 .arm_l,
+.character.is-chara_05 .arm_l {
+  animation: armLeftSwing 1.5s ease-in-out infinite;
+  transform-origin: top center;
+   will-change: transform;
+}
+
+.chara_gr {
+  position: relative;
+  overflow: hidden;
+  width: 330px;
+  max-width: 80%;
+  margin: 0 auto;
+  border-radius: 8px;
+  filter:
+    drop-shadow(5px 0 0 white)
+    drop-shadow(-5px 0 0 white)
+    drop-shadow(0 5px 0 white)
+    drop-shadow(0 -5px 0 white);
+
+    transform: translate3d(0,0,0);
+    will-change: filter ;
+}
+
+.chara_bg img {
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.chara_con {
+  width: 90%;
+  max-width: 280px;
+  position: absolute;
+  right: 13%;
+  margin: 0 auto;
+  bottom: -10%;
+}
