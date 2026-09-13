@@ -216,7 +216,8 @@ header {
 .gaugeBox {
   width: 40px;
   height: 10px;
-  margin: 0;
+  left: 50%;
+  margin: 0 auto;
   background-color: #837161;
 
   /* ゲージ同士の茶色い区切り線 */
@@ -293,13 +294,13 @@ header {
 
 /* ===== キャラ画像 ===== */
 .gaugeImage {
-  width: 20%;
+  width: 16%;
   height: auto;
   position: absolute;
   z-index: 5;
   top: 0;
   bottom: 0;
-  left: 7%;
+  left: 10%;
   margin: auto 0;
 }
 
@@ -396,6 +397,9 @@ iframe {
   position: relative;
   display: block;
   width: 100%;
+  height: 50%;
+  top: 5%;
+
   background-color: #000;
 }
 
@@ -405,10 +409,9 @@ iframe {
   position: absolute;
   width: 100%;
   height: 100vh;
-
   background-image: url("../images/menu_bg.jpg");
   background-repeat: repeat-y;
-  background-position: center bottom;
+  background-position: center top ;
   background-size: 100% auto;
 }
 
@@ -416,9 +419,10 @@ iframe {
 /* スライド全体 */
 #foodSplide {
   position: absolute;
-  top: 0%;
   right: 0;
   left: 0;
+  top: 0;
+  margin: 1vh 0 0 0;
 }
 
 

@@ -184,150 +184,185 @@
 </div>
 
 <!-- slide -->
-
 <div class="slide_con">
 
-<div class="menu_bg"><img src="./images/menu_bg.jpg" width="100%"></div>
+  <div class="menu_bg"></div>
 
-<div class="splide " id="foodSplide">
-  <div class="splide__track">
-    <ul class="splide__list">
+  <div class="splide" id="foodSplide">
+    <div class="splide__track">
+      <ul class="splide__list">
 
-      <!-- スライド1 -->
-      <li class="splide__slide">
-        <div class="foodSlide">
-          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
-          
-      <div class="slide_gr">
-            <div class="slide_left">
-            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
-            <img src="./images/food/food_01.png" class="foodImg" width="100%">
+        <!-- スライド1 -->
+        <li class="splide__slide">
+          <div class="foodSlide">
+
+            <div class="slide_ana">
+              <img src="./images/menu_slide_01.png" width="100%">
+            </div>
+
+            <div class="slide_gr">
+
+              <div class="slide_left">
+                <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+                <img src="./images/food/food_01.png" class="foodImg" width="100%">
+              </div>
+
+              <div class="slide_right">
+
+                <div class="menu_midashi">
+                  <img src="./images/food/food_name_01.png" width="100%">
+                </div>
+
+                <div class="slide_right_bottom">
+                  <p class="slide_setumei">
+                    ふわふわ卵に包まれたオムライス<br>
+                    ケチャップでお絵かき楽しい～！<br>
+                    穴があいてるのはご愛嬌！
+                  </p>
+
+                  <button class="foodbtn" onclick="selectFood(this)"
+                    data-type="favorite"
+                    data-video="hh7c--KrXH8">
+                    これをあげる！
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
           </div>
-          
-         <div class="slide_right">
-            <div class="menu_midashi"><img src="./images/food/food_name_01.png" width="100%"></div>
-          
-            <div class="slide_right_bottom">
-            <p class="slide_setumei">
-            ふわふわ卵に包まれたオムライス<br>
-            ケチャップでお絵かき楽しい～！<br>
-            穴があいてるのはご愛嬌！<br>
-            </p>
-          <button class="foodbtn" onclick="selectFood(this)"
-            data-type="favorite"
-            data-video="hh7c--KrXH8">
-            これをあげる！
-          </button>
-           </div>
-          
-         </div>
-      </div>
-          
-          
-        </div>
-      </li>
-    
-      <!-- スライド2 -->
-      <li class="splide__slide">
-        <div class="foodSlide">
-          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
-          
-      <div class="slide_gr">
-            <div class="slide_left">
-            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
-            <img src="./images/food/food_02.png" class="foodImg" width="100%">
-          </div>
-          
-         <div class="slide_right">
-            <div class="menu_midashi"><img src="./images/food/food_name_02.png" width="100%"></div>
-          
-            <div class="slide_right_bottom">
-            <p class="slide_setumei">
-            とろけるおいしさのネギトロ<br>
-            醬油とワサビで食べると最高！<br>
-            あ、醬油がこぼれちゃった...<br>
-            </p>
-          <button class="foodbtn" onclick="selectFood(this)"
-            data-type="like"
-            data-video="hh7c--KrXH8">
-            これをあげる！
-          </button>
-           </div>
-          
-         </div>
-      </div>
-          
-        </div>
-      </li>
+        </li>
 
-      <!-- スライド3 -->
-      <li class="splide__slide">
-        <div class="foodSlide">
-          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
-          
-      <div class="slide_gr">
-            <div class="slide_left">
-            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
-            <img src="./images/food/food_03.png" class="foodImg" width="100%">
-          </div>
-          
-         <div class="slide_right">
-            <div class="menu_midashi"><img src="./images/food/food_name_03.png" width="100%"></div>
-          
-            <div class="slide_right_bottom">
-            <p class="slide_setumei">
-            いい感じに盛り付けたトマト<br>
-            みずみずしくてジューシー！<br>
-            トマト100%の料理！...料理？<br>
-            </p>
-          <button class="foodbtn" onclick="selectFood(this)"
-            data-type="normal"
-            data-video="hh7c--KrXH8">
-            これをあげる！
-          </button>
-           </div>
-          
-         </div>
-      </div>
-          
-        </div>
-      </li>
 
-      <!-- スライド4 -->
-      <li class="splide__slide">
-        <div class="foodSlide">
-          <div class="slide_ana"><img src="./images/menu_slide_01.png" width="100%"></div>
-          
-      <div class="slide_gr">
-            <div class="slide_left">
-            <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
-            <img src="./images/food/food_04.png" class="foodImg" width="100%">
-          </div>
-          
-         <div class="slide_right">
-            <div class="menu_midashi"><img src="./images/food/food_name_04.png" width="100%"></div>
-          
-            <div class="slide_right_bottom">
-            <p class="slide_setumei">
-            ベーコンたっぷりカルボナーラ<br>
-            チーズと濃いめの味が幸せ！<br>
-            カロリー過多で卵黄も幸せ！<br>
-            </p>
-          <button class="foodbtn" onclick="selectFood(this)"
-            data-type="dislike"
-            data-video="hh7c--KrXH8">
-            これをあげる！
-          </button>
-           </div>
-          
-         </div>
-      </div>
-          
-        </div>
-      </li>
+        <!-- スライド2 -->
+        <li class="splide__slide">
+          <div class="foodSlide">
 
-    </ul>
+            <div class="slide_ana">
+              <img src="./images/menu_slide_01.png" width="100%">
+            </div>
+
+            <div class="slide_gr">
+
+              <div class="slide_left">
+                <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+                <img src="./images/food/food_02.png" class="foodImg" width="100%">
+              </div>
+
+              <div class="slide_right">
+
+                <div class="menu_midashi">
+                  <img src="./images/food/food_name_02.png" width="100%">
+                </div>
+
+                <div class="slide_right_bottom">
+                  <p class="slide_setumei">
+                    とろけるおいしさのネギトロ<br>
+                    醬油とワサビで食べると最高！<br>
+                    あ、醬油がこぼれちゃった...
+                  </p>
+
+                  <button class="foodbtn" onclick="selectFood(this)"
+                    data-type="like"
+                    data-video="hh7c--KrXH8">
+                    これをあげる！
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+
+        <!-- スライド3 -->
+        <li class="splide__slide">
+          <div class="foodSlide">
+
+            <div class="slide_ana">
+              <img src="./images/menu_slide_01.png" width="100%">
+            </div>
+
+            <div class="slide_gr">
+
+              <div class="slide_left">
+                <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+                <img src="./images/food/food_03.png" class="foodImg" width="100%">
+              </div>
+
+              <div class="slide_right">
+
+                <div class="menu_midashi">
+                  <img src="./images/food/food_name_03.png" width="100%">
+                </div>
+
+                <div class="slide_right_bottom">
+                  <p class="slide_setumei">
+                    いい感じに盛り付けたトマト<br>
+                    みずみずしくてジューシー！<br>
+                    トマト100%の料理！...料理？
+                  </p>
+
+                  <button class="foodbtn" onclick="selectFood(this)"
+                    data-type="normal"
+                    data-video="hh7c--KrXH8">
+                    これをあげる！
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+
+        <!-- スライド4 -->
+        <li class="splide__slide">
+          <div class="foodSlide">
+
+            <div class="slide_ana">
+              <img src="./images/menu_slide_01.png" width="100%">
+            </div>
+
+            <div class="slide_gr">
+
+              <div class="slide_left">
+                <img src="./images/menu_slide_02.png" class="food_bg" width="100%">
+                <img src="./images/food/food_04.png" class="foodImg" width="100%">
+              </div>
+
+              <div class="slide_right">
+
+                <div class="menu_midashi">
+                  <img src="./images/food/food_name_04.png" width="100%">
+                </div>
+
+                <div class="slide_right_bottom">
+                  <p class="slide_setumei">
+                    ベーコンたっぷりカルボナーラ<br>
+                    チーズと濃いめの味が幸せ！<br>
+                    カロリー過多で卵黄も幸せ！
+                  </p>
+
+                  <button class="foodbtn" onclick="selectFood(this)"
+                    data-type="dislike"
+                    data-video="hh7c--KrXH8">
+                    これをあげる！
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </li>
+
+      </ul>
+    </div>
   </div>
+
 </div>
 <!-- slide終わり -->
 
