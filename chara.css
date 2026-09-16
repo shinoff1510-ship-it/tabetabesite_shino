@@ -240,9 +240,6 @@
     drop-shadow(0 5px 0 white)
     drop-shadow(0 -5px 0 white);
 
-    transform: translate3d(0,0,0);
-    transform: translateZ(0);
-    will-change: filter ;
 }
 
 .chara_bg img {
