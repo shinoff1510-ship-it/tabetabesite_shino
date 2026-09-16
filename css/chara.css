@@ -254,3 +254,25 @@
   margin: 0 auto;
   bottom: -10%;
 }
+
+.chara_con_filter {
+  filter: drop-shadow(4px 0 0 red);
+}
+
+.arm_r,
+.arm_l,
+.tail {
+  animation: none !important;
+}
+
+.filter_test {
+  width: 100px;
+  height: 100px;
+  background: red;
+
+  filter:
+    drop-shadow(10px 0 0 blue)
+    drop-shadow(-10px 0 0 blue)
+    drop-shadow(0 10px 0 blue)
+    drop-shadow(0 -10px 0 blue);
+}
