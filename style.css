@@ -36,10 +36,6 @@ main {
     drop-shadow(0 -4px 0 white)
     drop-shadow(0px 5px 0px rgba(198, 151, 106, 1));
 
-    transform: translate3d(0,0,0);
-    transform: translateZ(0);
-    will-change: filter ;
-
 }
 
 .tya_drop {

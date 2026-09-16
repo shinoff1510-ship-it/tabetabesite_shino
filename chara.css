@@ -254,4 +254,6 @@
   right: 13%;
   margin: 0 auto;
   bottom: -10%;
+  transform: translateZ(0);
+
 }
