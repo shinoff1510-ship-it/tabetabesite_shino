@@ -239,6 +239,7 @@
     drop-shadow(-5px 0 0 white)
     drop-shadow(0 5px 0 white)
     drop-shadow(0 -5px 0 white);
+    transform: translateZ(0);
 }
 
 .chara_bg img {
@@ -255,9 +256,7 @@
   bottom: -10%;
 }
 
-.chara_con_filter {
-  filter: drop-shadow(4px 0 0 red);
-}
+
 
 .arm_r,
 .arm_l,
