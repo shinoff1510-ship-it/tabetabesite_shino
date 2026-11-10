@@ -359,8 +359,7 @@ iframe {
 /* 閉じるボタン */
 .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  bottom: 5dvh;
   font-size: 32px;
   color: #fff;
   cursor: pointer;
@@ -369,8 +368,8 @@ iframe {
 
 /* Short動画用 iframe */
 .shortVideo {
-  height: 100dvh;
-  width: calc(100dvh * 9 / 16);
+  height: 90dvh;
+  width: calc(90dvh * 9 / 16);
   max-width: 100vw;
   border: none;
   border-radius: 16px;
