@@ -33,21 +33,20 @@
 
   <main>
 
-<div id="plate" onclick="feedCharacter()">
-  <img id="foodImage">
-</div>
-
 <div id="result"></div>
 <div id="video" ></div>
 
 <button onclick="goBack()">戻る</button>
 
 <!-- モーダル -->
-<div id="videoModal" class="modal" data-autoshow="true" >
+<div id="videoModal" class="modal"
+     onclick="if (event.target === this) closeModal()">
+
   <div class="modalContent">
-    <span class="close" onclick="closeModal()">×</span>
+    <span class="close" onclick="closeModal()">SKIP</span>
     <div id="modalVideo"></div>
   </div>
+
 </div>
 
   </main>
@@ -55,10 +54,26 @@
   <footer></footer>
 
 </section>
-</body>
 
-<script src="./js/chara_script.js"></script>
+
+</body>
 <script src="./js/script.js"></script>
+<script src="./js/chara_script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 
+<script>
+// window.addEventListener("load", function() {
+
+//   alert("resultページの読み込み成功！");
+
+//   const modal = document.getElementById("videoModal");
+
+//   alert("modal取得結果：" + modal);
+
+//   if (modal) {
+//     modal.style.display = "block";
+//   }
+
+// });
+</script>
 </html>
