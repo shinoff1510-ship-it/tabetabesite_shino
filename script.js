@@ -176,50 +176,80 @@ console.log("現在のゲージ:", gauge);
   renderGauge();
 
 
-  // ===== 動画 =====
-  const video = document.getElementById("video");
+// ===== 動画 =====
 
-  if (video && videoId) {
-    video.innerHTML = `
-      <img
-        src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg"
-        class="videoThumb"
-      >
-    `;
+const video = document.getElementById("video");
+const modal = document.getElementById("videoModal");
 
+if (video && videoId) {
+
+  // サムネイル表示
+  video.innerHTML = `
+    <img
+      src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg"
+      class="videoThumb"
+    >
+  `;
+
+  // サムネイルを押したら動画を再生
+  const thumb = video.querySelector(".videoThumb");
+
+  thumb.addEventListener("click", function() {
+    openModal(videoId);
+  });
+
+  // ===== 自動表示設定 =====
+
+  if (modal && modal.dataset.autoshow === "true") {
     openModal(videoId);
   }
 
-
-  // ===== MAX =====
-  if (gauge === 10) {
-    localStorage.setItem("isComplete", "true");
-  }
 }
 
-// ===== モーダル =====
+
+// ===== MAX =====
+
+if (gauge === 10) {
+  localStorage.setItem("isComplete", "true");
+}
+}
+
+// ===== モーダルを開く =====
+
 function openModal(videoId) {
+
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
 
   if (!modal || !modalVideo) return;
 
+  if (videoId) {
+    modalVideo.innerHTML = `
+      <iframe
+        class="shortVideo"
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&rel=0"
+        allow="autoplay"
+        allowfullscreen>
+      </iframe>
+    `;
+  }
+
   modal.style.display = "block";
-
-  modalVideo.innerHTML = `
-
-    <iframe
-      class="shortVideo"
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&rel=0"
-      allow="autoplay"
-      allowfullscreen>
-    </iframe>
-  `;
 }
 
+
+// ===== モーダルを閉じる =====
+
 function closeModal() {
-  document.getElementById("videoModal").style.display = "none";
-  document.getElementById("modalVideo").innerHTML = "";
+
+  const modal = document.getElementById("videoModal");
+  const modalVideo = document.getElementById("modalVideo");
+
+  if (!modal || !modalVideo) return;
+
+  modal.style.display = "none";
+  modalVideo.innerHTML = "";
+
 }
 
 // ===== 戻る =====
@@ -276,4 +306,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   splide.mount();
+
+
 });

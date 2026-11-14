@@ -32,19 +32,18 @@
   </div>
 
   <main>
-<h1>お皿をタップ！</h1>
 
 <div id="plate" onclick="feedCharacter()">
   <img id="foodImage">
 </div>
 
 <div id="result"></div>
-<div id="video"></div>
+<div id="video" ></div>
 
 <button onclick="goBack()">戻る</button>
 
 <!-- モーダル -->
-<div id="videoModal" class="modal">
+<div id="videoModal" class="modal" data-autoshow="true" >
   <div class="modalContent">
     <span class="close" onclick="closeModal()">×</span>
     <div id="modalVideo"></div>

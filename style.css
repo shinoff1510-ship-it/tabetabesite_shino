@@ -50,10 +50,6 @@ header {
     z-index: 2;
 }
 
-.header_con {
-/* position: relative; */
-}
-
 .header_logo {
     display: block;
     height: 20px;
