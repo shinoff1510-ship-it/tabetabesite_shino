@@ -295,14 +295,20 @@ function goBack() {
 ================================= */
 
 function resetGame() {
-
+  // ゲージを初期値に戻す
   localStorage.setItem("gauge", "0");
+
+  // 完了状態を解除
   localStorage.removeItem("isComplete");
 
+  // 前回の選択情報をリセット
+  localStorage.removeItem("selectedFood");
+  localStorage.removeItem("videoId");
+  localStorage.setItem("resultProcessed", "false");
+
+  // index.htmlへ戻る
   location.href = "index.html";
-
 }
-
 
 /* =================================
    ページ読み込み時の初期処理
