@@ -15,7 +15,7 @@
   height: 80px;      /* 固定高さ */
   z-index: 5;
   left: 50px;
-  bottom: -50px;
+  bottom: -40px;
 
   box-sizing: border-box;
   font-size: 18px;
@@ -58,7 +58,6 @@
   width: 100%;
   white-space: normal;   /* 改行許可 */
   word-break: break-word;
-  font-family: "M PLUS 1p", sans-serif;
 }
 
 /* セリフ管理用は非表示 */

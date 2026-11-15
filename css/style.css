@@ -206,7 +206,7 @@ header {
 
   width: 75%;
   margin: 2.7% 0 0 0;
-  left: 21%;
+  left: 20%;
 }
 
 /* ===== ゲージ1個 ===== */
@@ -309,17 +309,6 @@ iframe {
 
 /* style.css に追加 */
 
-/* 動画サムネ */
-.videoThumb {
-  width: 200px;
-  margin: 20px auto;
-  cursor: pointer;
-  border-radius: 12px;
-  display: block;
-}
-
-
-
 
 /* 表示時 */
 #videoModal.show {
@@ -335,9 +324,15 @@ iframe {
   width: 100%;
   height: 100dvh;
   background: rgba(0, 0, 0, 0.8);
-  transition: all .3s ease ;
+
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
+/* 表示状態 */
+#videoModal.is-open {
+  opacity: 1;
+}
 /* 中央配置 */
 #videoModal .modalContent {
   height: 100%;
@@ -577,3 +572,93 @@ iframe {
   animation: settle 0.4s ease;
 }
 
+/* result */
+
+.result_img {
+  display: block;
+  width: 90%;
+  margin: 10px auto 10px auto;
+}
+
+.result_img p {
+  background-color: rgba(255, 231, 206, 1);
+  color: #502a06;
+  border: 3px solid #e38349;
+  width: 90%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  padding: 4px 0;
+  border-radius: 5px;
+  font-size: 20px ;
+}
+
+/* もう一度見るボタン */
+#video {
+  text-align: center;
+}
+
+.videoThumb {
+  display: inline-block;
+  align-items: center;
+  margin: 0 auto;
+  font-weight: bold;
+
+  font-size: 20px;
+  background-color: #ffffff;
+  color: #e38349;
+  border: 3px solid #e38349;
+  padding: 8px 20px ;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all .3s ease ;
+}
+
+.videoThumb:hover {
+  background-color: #e38349;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+}
+
+/* 戻るボタン */
+
+
+.back_button {
+  background-color: #e38349;
+  color: #ffffff;
+  display: block;
+  padding: 10px ;
+  position: absolute;
+  top: 25px;
+  left: 5px ;
+  font-size: 30px ;
+  z-index: 1000;
+  scale:calc(0.95);
+  transition: all .3s ease ;
+}
+
+.back_button:hover {
+  scale: calc(1);
+}
+
+/* コンプリートボタン */
+
+#completeButton {
+position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  margin: 25% 0 0 0;
+  text-align: center;
+}
+
+#completeButton a {
+  display: inline-block;
+  padding: 15px 30px;
+  background: #f3a6b8;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+}
