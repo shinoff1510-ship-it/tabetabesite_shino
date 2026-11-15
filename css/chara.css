@@ -13,7 +13,7 @@
 
   width: 260px;       /* 固定幅 */
   height: 80px;      /* 固定高さ */
-  z-index: 3;
+  z-index: 5;
   left: 50px;
   bottom: -50px;
 
@@ -104,6 +104,7 @@
   width: 90%;
   max-width: 300px;
   aspect-ratio: 6 / 7;
+  z-index: 2;
 }
 
 
@@ -233,13 +234,14 @@
   width: 330px;
   max-width: 80%;
   margin: 0 auto;
+  margin-top: -60px;
   border-radius: 8px;
-  filter:
+  /* filter:
     drop-shadow(5px 0 0 white)
     drop-shadow(-5px 0 0 white)
     drop-shadow(0 5px 0 white)
     drop-shadow(0 -5px 0 white);
-    transform: translateZ(0);
+    transform: translateZ(0); */
 }
 
 .chara_bg img {
