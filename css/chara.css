@@ -256,10 +256,3 @@
   bottom: -10%;
 }
 
-
-
-.arm_r,
-.arm_l,
-.tail {
-  animation: none !important;
-}
