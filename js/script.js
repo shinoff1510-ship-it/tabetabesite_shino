@@ -132,6 +132,7 @@ function renderFoodImage() {
    食べる
 ================================= */
 function feedCharacter() {
+
   // すでに処理済みなら何もしない
   if (localStorage.getItem("resultProcessed") === "true") return;
 
@@ -141,24 +142,32 @@ function feedCharacter() {
   if (isNaN(gauge)) gauge = 0;
 
   let change = 0;
+  let resultImage = "";
   let message = "";
 
   switch (type) {
     case "favorite":
       change = 3;
-      message = "😍 大好物！";
+      resultImage = "./images/01.png";
+      message = "卵いっぱい使って作るの大好き！";
       break;
+
     case "like":
       change = 2;
-      message = "😊 好き！";
+      resultImage = "./images/02.png";
+      message = "お寿司はネギトロばかり頼んじゃう！";
       break;
+
     case "normal":
       change = 1;
-      message = "😐 普通";
+      resultImage = "./images/03.png";
+      message = "ジュワ～ってして美味しいよね！";
       break;
+
     case "dislike":
       change = -2;
-      message = "😫 苦手...";
+      resultImage = "./images/04.png";
+      message = "パスタとかうどんとかも苦手...";
       break;
   }
 
@@ -171,10 +180,13 @@ function feedCharacter() {
     localStorage.setItem("isComplete", "true");
   }
 
+  // 結果画像表示
   const result = document.getElementById("result");
 
-  if (result) {
-    result.textContent = message + "（ゲージ：" + gauge + "）";
+  if (result && resultImage) {
+    result.innerHTML = `
+      <img src="${resultImage}" alt="result">
+    `;
   }
 
   // ゲージ更新
@@ -188,56 +200,158 @@ function feedCharacter() {
 }
 
 
+
+/* =================================
+   YouTube API 読み込み
+================================= */
+
+if (!document.getElementById("youtube-api")) {
+  const tag = document.createElement("script");
+  tag.id = "youtube-api";
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+}
+
+
+/* =================================
+   プレイヤー管理
+================================= */
+
+let modalPlayer = null;
+let pendingVideoId = null;
+
+
+/* =================================
+   YouTube API 準備完了
+================================= */
+
+function onYouTubeIframeAPIReady() {
+
+  // API読み込み前に動画を開こうとした場合
+  if (pendingVideoId) {
+    const videoId = pendingVideoId;
+    pendingVideoId = null;
+    createModalPlayer(videoId);
+  }
+
+}
+
+
 /* =================================
    モーダルを開く
 ================================= */
+
 function openModal(videoId) {
+
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
 
   if (!modal || !modalVideo || !videoId) return;
 
-  modalVideo.innerHTML = `
-    <iframe class="shortVideo"
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&rel=0"
-      allow="autoplay" allowfullscreen>
-    </iframe>`;
+  // 古いプレイヤーを削除
+  if (modalPlayer) {
+    modalPlayer.destroy();
+    modalPlayer = null;
+  }
+
+  modalVideo.innerHTML = '<div id="youtubePlayer"></div>';
 
   modal.style.display = "block";
 
   requestAnimationFrame(() => {
     modal.classList.add("is-open");
   });
+
+  // APIの準備ができているか確認
+  if (window.YT && YT.Player) {
+    createModalPlayer(videoId);
+  } else {
+    pendingVideoId = videoId;
+  }
+
 }
 
+
+/* =================================
+   YouTubeプレイヤー作成
+================================= */
+
+function createModalPlayer(videoId) {
+
+  const playerElement = document.getElementById("youtubePlayer");
+
+  if (!playerElement) return;
+
+  modalPlayer = new YT.Player("youtubePlayer", {
+
+  videoId: videoId,
+
+  playerVars: {
+    autoplay: 1,
+    controls: 0,
+    loop: 0,
+    rel: 0,
+    disablekb: 1,
+    fs: 0,
+    playsinline: 1
+  },
+
+  events: {
+    onReady: function(event) {
+      event.target.getIframe().classList.add("shortVideo");
+    },
+
+    onStateChange: function(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        closeModal();
+      }
+    }
+  }
+
+});
+
+}
 
 
 /* =================================
    モーダルを閉じる
 ================================= */
 function closeModal() {
+
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
 
   if (!modal || !modalVideo) return;
 
-  // すでに閉じている場合は何もしない
   if (!modal.classList.contains("is-open")) return;
 
-  // ふわっと消す
-  modal.classList.remove("is-open");
+// フェードアウト開始
+modal.classList.remove("is-open");
 
-  // ゲージとメッセージを更新
-  feedCharacter();
+// ゲージとメッセージを更新
+feedCharacter();
 
-  // アニメーションが終わってから動画を停止
-  setTimeout(() => {
-    if (!modal.classList.contains("is-open")) {
-      modal.style.display = "none";
-      modalVideo.innerHTML = "";
+pendingVideoId = null;
+
+// アニメーション終了後に削除
+setTimeout(() => {
+
+  if (!modal.classList.contains("is-open")) {
+
+    if (modalPlayer) {
+      modalPlayer.destroy();
+      modalPlayer = null;
     }
-  }, 350);
+
+    modal.style.display = "none";
+    modalVideo.innerHTML = "";
+
+  }
+
+}, 500);
+
 }
+
 
 /* =================================
    resultページ：動画自動表示
