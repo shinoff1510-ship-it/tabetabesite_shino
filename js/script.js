@@ -1,136 +1,144 @@
-// ===== 初期化 =====
+
+/* =================================
+   初期化
+================================= */
+
 if (localStorage.getItem("gauge") === null) {
-  localStorage.setItem("gauge", 0);
+  localStorage.setItem("gauge", "0");
 }
 
 let hasFed = false;
 
-// / ===== ゲージ描画 =====
+
+/* =================================
+   ゲージ描画
+================================= */
+
 function renderGauge() {
+
   const container = document.getElementById("gaugeContainer");
   if (!container) return;
 
   container.innerHTML = "";
 
-  // ゲージの値を取得
   let gauge = parseInt(localStorage.getItem("gauge"), 10);
 
-  // 数値としておかしい場合は0
-  if (isNaN(gauge)) {
-    gauge = 0;
-  }
+  if (isNaN(gauge)) gauge = 0;
 
-  // 0～10の範囲にする
   gauge = Math.max(0, Math.min(10, gauge));
 
-  // ===== ゲージ10個生成 =====
+  // ゲージ生成
   for (let i = 0; i < 10; i++) {
 
     const box = document.createElement("div");
     box.classList.add("gaugeBox");
 
-    // 埋まっている部分
     if (i < gauge) {
+
       box.classList.add("filled");
 
-      // 1～3個目 → 緑
       if (i < 3) {
         box.classList.add("level3");
-
-      // 4～6個目 → 青
       } else if (i < 6) {
         box.classList.add("level6");
-
-      // 7～9個目 → 紫
       } else if (i < 9) {
         box.classList.add("level9");
-
-      // 10個目 → オレンジ
       } else {
         box.classList.add("level10");
       }
+
     }
 
     container.appendChild(box);
   }
 
-// ===== 画像切り替え =====
-const image = document.getElementById("gaugeImage");
+  // キャラ画像切り替え
+  const image = document.getElementById("gaugeImage");
 
-if (image) {
+  if (image) {
 
-  // ゲージ0
-  if (gauge === 0) {
-    image.src = "./images/gage_chara/gage_chara_00.png";
+    if (gauge === 0) {
+      image.src = "./images/gage_chara/gage_chara_00.png";
 
-  // ゲージ1～3
-  } else if (gauge <= 3) {
-    image.src = "./images/gage_chara/gage_chara_01.png";
+    } else if (gauge <= 3) {
+      image.src = "./images/gage_chara/gage_chara_01.png";
 
-  // ゲージ4～6
-  } else if (gauge <= 6) {
-    image.src = "./images/gage_chara/gage_chara_02.png";
+    } else if (gauge <= 6) {
+      image.src = "./images/gage_chara/gage_chara_02.png";
 
-  // ゲージ7～9
-  } else if (gauge <= 9) {
-    image.src = "./images/gage_chara/gage_chara_03.png";
+    } else if (gauge <= 9) {
+      image.src = "./images/gage_chara/gage_chara_03.png";
 
-  // ゲージ10
-  } else {
-    image.src = "./images/gage_chara/gage_chara_04.png";
+    } else {
+      image.src = "./images/gage_chara/gage_chara_04.png";
+    }
+
   }
+
 }
-}
-
-renderGauge();
 
 
-// ===== completeボタン =====
+/* =================================
+   COMPLETEボタン
+================================= */
+
 function showCompleteButton() {
+
   const btn = document.getElementById("completeButton");
   if (!btn) return;
 
   if (localStorage.getItem("isComplete") === "true") {
     btn.style.display = "block";
   }
-}
-showCompleteButton();
 
-// ===== 食べ物選択（ここがポイント）=====
+}
+
+
+/* =================================
+   食べ物選択
+================================= */
+
 function selectFood(btn) {
   const type = btn.dataset.type;
   const video = btn.dataset.video;
 
   localStorage.setItem("selectedFood", type);
   localStorage.setItem("videoId", video);
+  localStorage.setItem("resultProcessed", "false");
 
   location.href = "result.html";
 }
 
-// ===== 食べ物画像 =====
 
+/* =================================
+   食べ物画像
+================================= */
 
-if (document.getElementById("foodImage")) {
+function renderFoodImage() {
+
+  const image = document.getElementById("foodImage");
+  if (!image) return;
+
   const type = localStorage.getItem("selectedFood");
-  document.getElementById("foodImage").src = foodImages[type];
+
+  if (typeof foodImages !== "undefined" && foodImages[type]) {
+    image.src = foodImages[type];
+  }
+
 }
 
 
-// ===== 食べる =====
+/* =================================
+   食べる
+================================= */
 function feedCharacter() {
-  if (hasFed) return;
-  hasFed = true;
+  // すでに処理済みなら何もしない
+  if (localStorage.getItem("resultProcessed") === "true") return;
 
-  const plate = document.getElementById("plate");
-  if (plate) plate.style.pointerEvents = "none";
-
-  let type = localStorage.getItem("selectedFood");
+  const type = localStorage.getItem("selectedFood");
   let gauge = parseInt(localStorage.getItem("gauge"), 10);
 
-if (isNaN(gauge)) {
-  gauge = 0;
-}
-  let videoId = localStorage.getItem("videoId");
+  if (isNaN(gauge)) gauge = 0;
 
   let change = 0;
   let message = "";
@@ -140,106 +148,193 @@ if (isNaN(gauge)) {
       change = 3;
       message = "😍 大好物！";
       break;
-
     case "like":
       change = 2;
       message = "😊 好き！";
       break;
-
     case "normal":
       change = 1;
       message = "😐 普通";
       break;
-
     case "dislike":
       change = -2;
       message = "😫 苦手...";
       break;
   }
 
-// ===== ゲージ計算 =====
-gauge += change;
+  gauge = Math.max(0, Math.min(10, gauge + change));
 
-// 0～10の範囲に収める
-gauge = Math.max(0, Math.min(10, gauge));
+  localStorage.setItem("gauge", String(gauge));
+  localStorage.setItem("resultProcessed", "true");
 
-// 保存
-localStorage.setItem("gauge", String(gauge));
-
-console.log("現在のゲージ:", gauge);
-
-  document.getElementById("result").textContent =
-    message + "（ゲージ：" + gauge + "）";
-
-
-  // ===== ゲージ更新 =====
-  renderGauge();
-
-
-  // ===== 動画 =====
-  const video = document.getElementById("video");
-
-  if (video && videoId) {
-    video.innerHTML = `
-      <img
-        src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg"
-        class="videoThumb"
-      >
-    `;
-
-    openModal(videoId);
-  }
-
-
-  // ===== MAX =====
   if (gauge === 10) {
     localStorage.setItem("isComplete", "true");
   }
+
+  const result = document.getElementById("result");
+
+  if (result) {
+    result.textContent = message + "（ゲージ：" + gauge + "）";
+  }
+
+  // ゲージ更新
+  renderGauge();
+
+  // MAX判定
+  if (gauge === 10) {
+    localStorage.setItem("isComplete", "true");
+  }
+
 }
 
-// ===== モーダル =====
+
+/* =================================
+   モーダルを開く
+================================= */
 function openModal(videoId) {
+  const modal = document.getElementById("videoModal");
+  const modalVideo = document.getElementById("modalVideo");
+
+  if (!modal || !modalVideo || !videoId) return;
+
+  modalVideo.innerHTML = `
+    <iframe class="shortVideo"
+      src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&rel=0"
+      allow="autoplay" allowfullscreen>
+    </iframe>`;
+
+  modal.style.display = "block";
+
+  requestAnimationFrame(() => {
+    modal.classList.add("is-open");
+  });
+}
+
+
+
+/* =================================
+   モーダルを閉じる
+================================= */
+function closeModal() {
   const modal = document.getElementById("videoModal");
   const modalVideo = document.getElementById("modalVideo");
 
   if (!modal || !modalVideo) return;
 
-  modal.style.display = "block";
+  // すでに閉じている場合は何もしない
+  if (!modal.classList.contains("is-open")) return;
 
-  modalVideo.innerHTML = `
+  // ふわっと消す
+  modal.classList.remove("is-open");
 
-    <iframe
-      class="shortVideo"
-      src="https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&rel=0"
-      allow="autoplay"
-      allowfullscreen>
-    </iframe>
+  // ゲージとメッセージを更新
+  feedCharacter();
+
+  // アニメーションが終わってから動画を停止
+  setTimeout(() => {
+    if (!modal.classList.contains("is-open")) {
+      modal.style.display = "none";
+      modalVideo.innerHTML = "";
+    }
+  }, 350);
+}
+
+/* =================================
+   resultページ：動画自動表示
+================================= */
+
+function initResultVideo() {
+
+  const video = document.getElementById("video");
+  const modal = document.getElementById("videoModal");
+
+  // resultページ以外では実行しない
+  if (!video || !modal) return;
+
+  // 保存された動画IDを取得
+  const videoId = localStorage.getItem("videoId");
+
+  if (!videoId || videoId === "null") {
+    console.log("動画IDがありません");
+    return;
+  }
+
+  // サムネイル表示
+  video.innerHTML = `
+    <img
+      src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg"
+      class="videoThumb"
+      alt="動画サムネイル"
+    >
   `;
+
+  // サムネイルからも再生できるようにする
+  video.querySelector(".videoThumb").addEventListener("click", function() {
+    openModal(videoId);
+  });
+
+  // ページを開いたら自動再生
+  openModal(videoId);
+
+  console.log("動画ID:", videoId);
+
 }
 
-function closeModal() {
-  document.getElementById("videoModal").style.display = "none";
-  document.getElementById("modalVideo").innerHTML = "";
-}
 
-// ===== 戻る =====
+/* =================================
+   戻る
+================================= */
+
 function goBack() {
   location.href = "index.html";
 }
 
-// ===== リセット =====
+
+/* =================================
+   リセット
+================================= */
+
 function resetGame() {
-  localStorage.setItem("gauge", 0);
+
+  localStorage.setItem("gauge", "0");
   localStorage.removeItem("isComplete");
+
   location.href = "index.html";
+
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
+/* =================================
+   ページ読み込み時の初期処理
+================================= */
+
+function initPage() {
+
+  renderGauge();
+
+  showCompleteButton();
+
+  renderFoodImage();
+
+  initResultVideo();
+
+}
+
+
+/* =================================
+   Splide
+================================= */
+
+function initSplide() {
+
   const splideElement = document.getElementById("foodSplide");
+
   if (!splideElement) return;
 
+  if (typeof Splide === "undefined") return;
+
   const splide = new Splide("#foodSplide", {
+
     type: "loop",
     perPage: 1,
     focus: "center",
@@ -247,33 +342,61 @@ document.addEventListener("DOMContentLoaded", function () {
     padding: "5%",
     arrows: false,
     pagination: false,
+
   });
 
-  // ===== スライド開始 =====
-  splide.on("move", function (newIndex) {
+  // スライド開始
+  splide.on("move", function(newIndex) {
+
     const slide = splide.Components.Slides.getAt(newIndex);
+
     if (!slide) return;
 
     const el = slide.slide;
 
     el.classList.remove("tilt", "settle");
-    el.classList.add("tilt"); // 常に左回転
+    el.classList.add("tilt");
+
   });
 
-  // ===== スライド終了 =====
-  splide.on("moved", function (newIndex) {
+  // スライド終了
+  splide.on("moved", function(newIndex) {
+
     const slide = splide.Components.Slides.getAt(newIndex);
+
     if (!slide) return;
 
     const el = slide.slide;
 
     el.classList.remove("tilt");
 
-    // アニメ再発火
     void el.offsetWidth;
 
     el.classList.add("settle");
+
   });
 
   splide.mount();
-});
+
+}
+
+
+/* =================================
+   DOM読み込み完了
+================================= */
+
+if (document.readyState === "loading") {
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    initPage();
+    initSplide();
+
+  });
+
+} else {
+
+  initPage();
+  initSplide();
+
+}
