@@ -77,22 +77,38 @@ function renderGauge() {
 
 }
 
-
 /* =================================
-   COMPLETEボタン
+   MAX時の表示切り替え
 ================================= */
 
 function showCompleteButton() {
 
+  const foodArea = document.getElementById("foodSlideArea");
   const btn = document.getElementById("completeButton");
-  if (!btn) return;
 
-  if (localStorage.getItem("isComplete") === "true") {
+  if (!foodArea || !btn) return;
+
+  const gauge = parseInt(localStorage.getItem("gauge"), 10) || 0;
+
+  if (gauge >= 10) {
+
+    // 食べ物スライドを非表示
+    foodArea.style.display = "none";
+
+    // 完了ボタンを表示
     btn.style.display = "block";
+
+  } else {
+
+    // 食べ物スライドを表示
+    foodArea.style.display = "";
+
+    // 完了ボタンを非表示
+    btn.style.display = "none";
+
   }
 
 }
-
 
 /* =================================
    食べ物選択
@@ -180,14 +196,17 @@ function feedCharacter() {
     localStorage.setItem("isComplete", "true");
   }
 
-  // 結果画像表示
-  const result = document.getElementById("result");
+// 結果表示
+const result = document.getElementById("result");
 
-  if (result && resultImage) {
-    result.innerHTML = `
+if (result && resultImage) {
+  result.innerHTML = `
+    <div class="result_img">
       <img src="${resultImage}" alt="result">
-    `;
-  }
+    </div>
+    <p>${message}</p>
+  `;
+}
 
   // ゲージ更新
   renderGauge();
@@ -375,11 +394,7 @@ function initResultVideo() {
 
   // サムネイル表示
   video.innerHTML = `
-    <img
-      src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg"
-      class="videoThumb"
-      alt="動画サムネイル"
-    >
+    <div class="videoThumb">もう一度見る</div>
   `;
 
   // サムネイルからも再生できるようにする
