@@ -628,6 +628,7 @@ iframe {
   background-color: #e38349;
   color: #ffffff;
   display: block;
+  width: 60px;
   padding: 10px ;
   position: absolute;
   top: 25px;
