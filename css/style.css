@@ -655,11 +655,86 @@ position: absolute;
 }
 
 #completeButton a {
-  display: inline-block;
-  padding: 15px 30px;
-  background: #f3a6b8;
+  position: relative;
+  align-items: center;
+  padding: 15px 40px;
+  margin: 0 auto;
   color: #fff;
+  border: 3px solid #e38349;
+  background-color: #ffffff;
   text-decoration: none;
   border-radius: 30px;
   font-weight: bold;
+  transition: all .3s ease ;
+  cursor: pointer;
+}
+
+#completeButton a:hover {
+  background-color: #e38349;
+  color: #ffffff;
+}
+
+#completeButton a:hover p {
+  color: #ffffff;
+}
+
+#completeButton a .comp_img {
+  position: absolute;
+  display: block;
+  width: 100px ;
+  height: fit-content;
+  top: 0;bottom: 0;
+  margin: auto 0;  
+  left: -20px ;
+  animation: poyopoyo 2s ease-out infinite;
+  opacity: 1;
+}
+
+@keyframes poyopoyo {
+  0%, 40%, 60%, 80% {
+    transform: scale(1.0);
+  }
+  50%, 70% {
+    transform: scale(0.95);
+  }
+}
+
+#completeButton a p {
+  color: #e38349;
+  display: inline-block;
+  font-size: 20px ;
+  padding: 5px 0px 5px 50px;
+}
+
+#completeButton a::before, #completeButton a::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform-origin: 100% 50%;
+  height: 2px;
+  width: 16px;
+  background-color: #e38349;
+  border-radius: 2px;
+  will-change: transform;
+  transition: .3s ease ;
+}
+
+#completeButton a::before {
+  transform: translateY(-50%) rotate(30deg);
+}
+
+#completeButton a::after {
+  transform: translateY(-50%) rotate(-30deg);
+}
+
+#completeButton a:hover::before {
+  background-color: #ffffff;
+  transform: translate(5px, -50%) rotate(30deg);
+}
+
+#completeButton a:hover::after {
+  background-color: #ffffff;
+  transform: translate(5px, -50%) rotate(-30deg);
 }
